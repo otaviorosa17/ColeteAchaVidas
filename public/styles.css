@@ -1,0 +1,14 @@
+/* Estilos para o mapa */
+#map {
+    height: 90vh;
+    width: 100%;
+}
+
+/* Estilos para o container do slider */
+#slider-container {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+}
