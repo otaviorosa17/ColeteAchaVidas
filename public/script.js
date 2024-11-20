@@ -1,10 +1,9 @@
 async function loadGoogleMapsApi() {
     try {
         // Busca a API Key do backend
-        const response = await fetch('/api/config');
+        const response = await fetch('/api/get-google-maps-key');
         const data = await response.json();
         const apiKey = data.apiKey;
-
         // Adiciona o script do Google Maps dinamicamente
         const script = document.createElement("script");
         script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
@@ -124,7 +123,9 @@ async function atualizarLocalizacao() {
             new google.maps.Marker({
                 position: ponto2,
                 map: map,
-                title: "Localização Recebida"
+                title: "Localização Recebida",
+                icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                
             });
         }
     } catch (error) {
@@ -134,7 +135,6 @@ async function atualizarLocalizacao() {
 
 // Chama a função de atualização de localização a cada 10 segundos
 setInterval(atualizarLocalizacao, 10000);
-
 
 // Carrega a API do Google Maps
 loadGoogleMapsApi();

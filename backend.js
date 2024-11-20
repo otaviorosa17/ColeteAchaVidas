@@ -1,6 +1,6 @@
+const dotenv = require("dotenv");
 const express = require("express");
 const path = require("path");
-const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -10,6 +10,12 @@ app.use(express.json()); // Middleware para interpretar JSON no corpo das requis
 
 // Endpoint para receber a localização do ESP32
 let latestLocation = { lat: 0, lng: 0 }; // Inicializa com valores padrão
+
+
+app.get('/api/get-google-maps-key', (req, res) => {
+    res.json({ apiKey: process.env.API_KEY });
+  });
+
 
 app.post("/api/location", (req, res) => {
     const { latitude, longitude } = req.body;
