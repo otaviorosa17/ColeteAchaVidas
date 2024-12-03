@@ -1,3 +1,8 @@
+let map;
+let circle;
+let ponto1;
+let marcadorAtual; // Referência ao marcador para atualização
+
 async function loadGoogleMapsApi() {
     try {
         // Busca a API Key do backend
@@ -14,10 +19,6 @@ async function loadGoogleMapsApi() {
         console.error("Erro ao carregar a API Key:", error);
     }
 }
-
-let map;
-let circle;
-let ponto1;
 
 function initMap() {
     const localInicial = { lat: 0, lng: 0 };
@@ -110,7 +111,7 @@ function erroLocalizacao() {
 async function atualizarLocalizacao() {
     try {
         let ponto2;
-        const response = await fetch("/api/location");
+        const response = await fetch("/api/location/latest");
         const location = await response.json();
         
         if (location.lat && location.lng) {
@@ -119,14 +120,21 @@ async function atualizarLocalizacao() {
                 lng: location.lng
             };
 
-            // Atualiza o marcador
-            new google.maps.Marker({
-                position: ponto2,
-                map: map,
-                title: "Localização Recebida",
-                icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-                
-            });
+            // Se o marcador já existir, atualiza a posição dele
+            if (marcadorAtual) {
+                marcadorAtual.setPosition(ponto2);
+            } else {
+                // Caso contrário, cria um novo marcador
+                marcadorAtual = new google.maps.Marker({
+                    position: ponto2,
+                    map: map,
+                    title: "Localização Recebida",
+                    icon: {
+                        url: "https://maps.google.com/mapfiles/ms/icons/green-dot.png", // URL de exemplo
+                        scaledSize: new google.maps.Size(50, 50), // Tamanho personalizado
+                    },
+                });
+            }
         }
     } catch (error) {
         console.error("Erro ao obter a localização:", error);
