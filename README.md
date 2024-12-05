@@ -58,7 +58,7 @@ Este projeto implementa um rastreador GPS utilizando um ESP32, um módulo SIM800
 
 1. **Montagem do Circuito**: Realize as conexões descritas na seção **Conexões**.
 2. **Carregamento do Código**: Suba os arquivos para o ESP32 utilizando o IDE Thonny ou outro gerenciador compatível com MicroPython.
-3. **Configuração do Número de Destino**: No arquivo `boot.py`, ajuste o número de destino em `enviarmensagem(f"latitude: {latitude_decimal} longitude: {longitude_decimal}", "+5511966393836")`.
+3. **Configuração do Número de Destino**: No arquivo `boot.py`, ajuste o número de destino em `enviarmensagem(f"latitude: {latitude_decimal} longitude: {longitude_decimal}", "SEUNÚMERO")`.
 4. **Execução**: Reinicie o ESP32 para iniciar o rastreamento.
 
 ## Dependências
