@@ -52,7 +52,7 @@ Este projeto implementa um rastreador GPS utilizando um ESP32, um módulo SIM800
 2. Os dados do GPS são convertidos de DMS para formato decimal.
 3. Uma mensagem SMS é enviada com as coordenadas para um número configurado.
 4. Caso o envio falhe, uma nova tentativa será realizada após 1 segundo.
-5. As mensagens são processadas pelo celular e enviadas a um servidor HTTP (detalhes futuros).
+5. As mensagens são processadas pelo celular e enviadas a um servidor HTTP com a aplicação Web (processo que pode ser feito através de um serviço de SMS Gateway ou com um celular e chip próprios usando um aplicativo de SMS Forwarding).
 
 ## Configuração e Uso
 
